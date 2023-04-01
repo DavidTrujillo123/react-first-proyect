@@ -1,21 +1,58 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { TodoCouter } from './modules/TodoCounter.js';
+import { TodoSearch } from './modules/TodoSearch.js';
+import { TodoList } from './modules/TodoList.js';
+import { TodoItem } from './modules/TodoItem.js';
+import { CreateTodoButton } from './modules/CreateTodoButton.js';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+const todos = [
+  {text: 'Jugar', completed: false},
+  {text: 'Comer', completed: false},
+  {text: 'Dormir', completed: false},
+]
+
+function App() {
+  return (
+    //Siempre necesita estar envuelta de un
+    //div o etiqueta
+    // React Fragment oculta el div principal
+    <React.Fragment>
+      <TodoCouter />
+
+      <TodoSearch />
+
+      <TodoList>
+        {todos.map(todo =>(
+          <TodoItem key={todo.text} text={todo.text}/>
+        ))}
+      </TodoList>
+
+      <CreateTodoButton />
+    </React.Fragment>
+  );
 }
+
+// class App extends Component {
+//   render() {
+//     return (
+//       //Siempre necesita estar envuelta de un
+//       //div o etiqueta
+//       // React Fragment oculta el div principal
+//       <React.Fragment>
+//         <TodoCouter />
+
+//         <TodoSearch />
+
+//         <TodoList>
+//           {todos.map(todo =>(
+//             <TodoItem key={todo.text} text={todo.text}/>
+//           ))}
+//         </TodoList>
+
+//         <CreateTodoButton />
+//       </React.Fragment>
+//     );
+//   }
+// }
 
 export default App;
